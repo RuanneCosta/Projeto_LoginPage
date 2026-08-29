@@ -300,3 +300,287 @@
 </body>
 
 </html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Register</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* Fundo ocupando toda a tela */
+
+            background: linear-gradient(
+                    to bottom,
+                    #e69bef 0%,
+                    #d7c2f0 50%,
+                    #aee8e8 100%
+            );
+        }
+
+        .register-box {
+            width: 310px;
+
+            text-align: center;
+        }
+
+        /* Ícone de usuário */
+
+        .user-icon {
+            width: 22px;
+            height: 22px;
+
+            border: 2px solid white;
+            border-radius: 50%;
+
+            margin: 0 auto 28px;
+
+            position: relative;
+        }
+
+        .user-icon::after {
+            content: "";
+
+            position: absolute;
+
+            width: 32px;
+            height: 16px;
+
+            border: 2px solid white;
+            border-bottom: none;
+
+            border-radius: 20px 20px 0 0;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+            top: 25px;
+        }
+
+        /* Título */
+
+        h1 {
+            color: white;
+
+            font-size: 32px;
+            font-weight: 300;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 28px;
+        }
+
+        /* Campos */
+
+        .input-box {
+            position: relative;
+
+            margin-bottom: 20px;
+        }
+
+        .input-box span {
+            position: absolute;
+
+            left: 0;
+            top: 2px;
+
+            color: #39709f;
+
+            font-size: 17px;
+        }
+
+        .input-box input {
+            width: 100%;
+
+            padding: 8px 0 9px 45px;
+
+            background: transparent;
+
+            border: none;
+            border-bottom: 1px solid #39709f;
+
+            outline: none;
+
+            color: #39709f;
+
+            font-size: 14px;
+        }
+
+        .input-box input::placeholder {
+            color: #7d94b7;
+        }
+
+        /* Botão */
+
+        .register-button {
+            width: 100%;
+            height: 38px;
+
+            margin-top: 5px;
+
+            border: none;
+
+            background-color: #396e9f;
+
+            color: white;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .register-button:hover {
+            background-color: #2e5d89;
+        }
+
+        /* Link para login */
+
+        .login-link {
+            margin-top: 20px;
+
+            font-size: 11px;
+
+            color: #39709f;
+        }
+
+        .login-link a {
+            color: #39709f;
+
+            font-weight: bold;
+
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="register-box">
+
+    <div class="user-icon"></div>
+
+    <h1>Register</h1>
+
+
+    <form>
+
+        <!-- Nome -->
+
+        <div class="input-box">
+
+            <span>♙</span>
+
+            <input
+                    type="text"
+                    placeholder="Name"
+                    required
+            >
+
+        </div>
+
+
+        <!-- Email -->
+
+        <div class="input-box">
+
+            <span>✉</span>
+
+            <input
+                    type="email"
+                    placeholder="Email ID"
+                    required
+            >
+
+        </div>
+
+
+        <!-- Senha -->
+
+        <div class="input-box">
+
+            <span>🔒</span>
+
+            <input
+                    type="password"
+                    placeholder="Password"
+                    required
+            >
+
+        </div>
+
+
+        <!-- Confirmar senha -->
+
+        <div class="input-box">
+
+            <span>🔒</span>
+
+            <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    required
+            >
+
+        </div>
+
+
+        <!-- Botão -->
+
+        <button
+                type="submit"
+                class="register-button"
+        >
+            REGISTER
+        </button>
+
+    </form>
+
+
+    <!-- Link para login -->
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
