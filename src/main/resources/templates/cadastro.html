@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastro</title>
 
     <style>
 
@@ -78,7 +78,7 @@
             text-align: center;
         }
 
-        .botao-entrar {
+        .botao-cadastrar {
             width: 100%;
             padding: 11px;
             margin-top: 6px;
@@ -92,23 +92,23 @@
             transition: 0.2s;
         }
 
-        .botao-entrar:hover {
+        .botao-cadastrar:hover {
             background-color: #1558b0;
         }
 
-        .link-registrar {
+        .link-login {
             display: block;
             text-align: left;
             margin-top: 16px;
             font-size: 13px;
         }
 
-        .link-registrar a {
+        .link-login a {
             color: #1a73e8;
             text-decoration: none;
         }
 
-        .link-registrar a:hover {
+        .link-login a:hover {
             text-decoration: underline;
         }
 
@@ -119,13 +119,18 @@
 
 <div class="card">
 
-    <h1>Login</h1>
+    <h1>Cadastro</h1>
 
-    <form method="post" action="/logar">
+    <form method="post" action="/cadastro">
 
         <p class="mensagem-erro" th:if="${erro}">
             <span th:text="${erro}"></span>
         </p>
+
+        <div class="campo">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+        </div>
 
         <div class="campo">
             <label for="email">E-mail</label>
@@ -137,12 +142,17 @@
             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
         </div>
 
-        <button type="submit" class="botao-entrar">Entrar</button>
+        <div class="campo">
+            <label for="confirmarSenha">Confirmar senha</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>
+        </div>
+
+        <button type="submit" class="botao-cadastrar">Cadastrar</button>
 
     </form>
 
-    <span class="link-registrar">
-        <a href="/cadastro">Registrar-se</a>
+    <span class="link-login">
+        Já tem uma conta? <a href="/login">Entrar</a>
     </span>
 
 </div>

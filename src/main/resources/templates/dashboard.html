@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+            --azul: #39709f;
+            --azul-escuro: #2e5d89;
+            --azul-claro: #eaf1f8;
+            --texto: #2b3a4a;
+            --texto-suave: #7d94b7;
+            --borda: #e4ebf3;
+            --branco: #ffffff;
+            --verde: #3fa66a;
+            --vermelho: #d9634f;
+            --raio: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            color: var(--texto);
+            background: linear-gradient(160deg, #f2e9fb 0%, #eef3fb 45%, #e8f6f4 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        h1, h2, h3, .marca span {
+            font-family: 'Outfit', Arial, sans-serif;
+        }
+
+        /* ---------- Barra lateral ---------- */
+
+        .barra-lateral {
+            width: 240px;
+            flex-shrink: 0;
+            background: var(--branco);
+            border-right: 1px solid var(--borda);
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 4px;
+        }
+
+        .marca-icone {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--azul);
+            border-radius: 50%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .marca-icone::after {
+            content: "";
+            position: absolute;
+            width: 28px;
+            height: 14px;
+            border: 2px solid var(--azul);
+            border-bottom: none;
+            border-radius: 18px 18px 0 0;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 22px;
+        }
+
+        .marca span {
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: 0.5px;
+            color: var(--texto);
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .rotulo-nav {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--texto-suave);
+            margin: 18px 0 8px 12px;
+        }
+
+        .rotulo-nav:first-child {
+            margin-top: 0;
+        }
+
+        nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            color: var(--texto);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.15s;
+        }
+
+        nav a .pt {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--texto-suave);
+            flex-shrink: 0;
+        }
+
+        nav a:hover {
+            background: var(--azul-claro);
+        }
+
+        nav a.ativo {
+            background: var(--azul);
+            color: white;
+        }
+
+        nav a.ativo .pt {
+            background: white;
+        }
+
+        .cartao-sair {
+            margin-top: auto;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            padding: 14px;
+            font-size: 12px;
+            color: var(--texto-suave);
+        }
+
+        .cartao-sair a {
+            display: block;
+            margin-top: 8px;
+            color: var(--azul);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .cartao-sair a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- Conteúdo principal ---------- */
+
+        main {
+            flex: 1;
+            padding: 32px 40px 60px;
+            max-width: 1180px;
+        }
+
+        .cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .cabecalho h1 {
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .cabecalho p {
+            color: var(--texto-suave);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .perfil {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--branco);
+            border: 1px solid var(--borda);
+            border-radius: 999px;
+            padding: 6px 16px 6px 6px;
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--azul);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .perfil .nome {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .perfil .cargo {
+            font-size: 11px;
+            color: var(--texto-suave);
+        }
+
+        /* ---------- Cartões de indicadores ---------- */
+
+        .grade-indicadores {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .indicador {
+            background: var(--branco);
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            padding: 20px;
+        }
+
+        .indicador .rotulo {
+            font-size: 12px;
+            color: var(--texto-suave);
+            margin-bottom: 10px;
+        }
+
+        .indicador .valor {
+            font-size: 26px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .indicador .variacao {
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .variacao.positiva { color: var(--verde); }
+        .variacao.negativa { color: var(--vermelho); }
+
+        /* ---------- Linha com gráfico + atividade ---------- */
+
+        .grade-principal {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+
+        .painel {
+            background: var(--branco);
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            padding: 22px;
+        }
+
+        .painel-cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .painel-cabecalho h2 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .painel-cabecalho .periodo {
+            font-size: 12px;
+            color: var(--texto-suave);
+            border: 1px solid var(--borda);
+            border-radius: 8px;
+            padding: 5px 10px;
+        }
+
+        /* gráfico de barras em CSS puro */
+
+        .grafico-barras {
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            height: 180px;
+            padding-top: 10px;
+        }
+
+        .barra-coluna {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .barra {
+            width: 100%;
+            max-width: 30px;
+            border-radius: 6px 6px 0 0;
+            background: linear-gradient(180deg, var(--azul) 0%, var(--azul-escuro) 100%);
+        }
+
+        .barra-coluna span {
+            font-size: 11px;
+            color: var(--texto-suave);
+        }
+
+        /* atividade recente */
+
+        .lista-atividade {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .item-atividade {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .ponto-atividade {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--azul);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .item-atividade p {
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .item-atividade time {
+            font-size: 11px;
+            color: var(--texto-suave);
+        }
+
+        /* ---------- Tabela de usuários ---------- */
+
+        .tabela-usuarios {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .tabela-usuarios th {
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--texto-suave);
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .tabela-usuarios td {
+            padding: 14px 12px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .tabela-usuarios tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pessoa {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pessoa .avatar {
+            width: 30px;
+            height: 30px;
+            font-size: 12px;
+        }
+
+        .selo {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .selo.ativo {
+            background: #e4f5ea;
+            color: var(--verde);
+        }
+
+        .selo.pendente {
+            background: #fbeee9;
+            color: var(--vermelho);
+        }
+
+        /* ---------- Responsivo ---------- */
+
+        @media (max-width: 980px) {
+            .grade-indicadores { grid-template-columns: repeat(2, 1fr); }
+            .grade-principal { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 720px) {
+            body { flex-direction: column; }
+            .barra-lateral {
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                overflow-x: auto;
+                padding: 16px 20px;
+            }
+            .cartao-sair, .rotulo-nav { display: none; }
+            nav { flex-direction: row; }
+            main { padding: 24px 20px 40px; }
+            .grade-indicadores { grid-template-columns: 1fr 1fr; }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<aside class="barra-lateral">
+
+    <div class="marca">
+        <div class="marca-icone"></div>
+        <span>Painel</span>
+    </div>
+
+    <nav>
+        <span class="rotulo-nav">Geral</span>
+        <a href="#" class="ativo"><span class="pt"></span> Visão geral</a>
+        <a href="#"><span class="pt"></span> Usuários</a>
+        <a href="#"><span class="pt"></span> Atividade</a>
+
+        <span class="rotulo-nav">Conta</span>
+        <a href="#"><span class="pt"></span> Configurações</a>
+        <a href="#"><span class="pt"></span> Segurança</a>
+    </nav>
+
+    <div class="cartao-sair">
+        Sessão iniciada
+        <a href="/login">Sair da conta</a>
+    </div>
+
+</aside>
+
+<main>
+
+    <div class="cabecalho">
+        <div>
+            <h1>Olá, bem-vindo(a) de volta</h1>
+            <p>Aqui está um resumo da sua conta hoje</p>
+        </div>
+
+        <div class="perfil">
+            <div class="avatar">RU</div>
+            <div>
+                <div class="nome">Ruan</div>
+                <div class="cargo">Usuário cadastrado</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grade-indicadores">
+
+        <div class="indicador">
+            <div class="rotulo">Usuários cadastrados</div>
+            <div class="valor">128</div>
+            <div class="variacao positiva">↑ 12% este mês</div>
+        </div>
+
+        <div class="indicador">
+            <div class="rotulo">Logins hoje</div>
+            <div class="valor">34</div>
+            <div class="variacao positiva">↑ 4% em relação a ontem</div>
+        </div>
+
+        <div class="indicador">
+            <div class="rotulo">Cadastros pendentes</div>
+            <div class="valor">5</div>
+            <div class="variacao negativa">↓ 2 desde ontem</div>
+        </div>
+
+        <div class="indicador">
+            <div class="rotulo">Taxa de atividade</div>
+            <div class="valor">87%</div>
+            <div class="variacao positiva">↑ 3% esta semana</div>
+        </div>
+
+    </div>
+
+    <div class="grade-principal">
+
+        <div class="painel">
+            <div class="painel-cabecalho">
+                <h2>Cadastros por dia</h2>
+                <span class="periodo">Últimos 7 dias</span>
+            </div>
+
+            <div class="grafico-barras">
+                <div class="barra-coluna"><div class="barra" style="height: 45%;"></div><span>Seg</span></div>
+                <div class="barra-coluna"><div class="barra" style="height: 65%;"></div><span>Ter</span></div>
+                <div class="barra-coluna"><div class="barra" style="height: 40%;"></div><span>Qua</span></div>
+                <div class="barra-coluna"><div class="barra" style="height: 80%;"></div><span>Qui</span></div>
+                <div class="barra-coluna"><div class="barra" style="height: 55%;"></div><span>Sex</span></div>
+                <div class="barra-coluna"><div class="barra" style="height: 30%;"></div><span>Sáb</span></div>
+                <div class="barra-coluna"><div class="barra" style="height: 70%;"></div><span>Dom</span></div>
+            </div>
+        </div>
+
+        <div class="painel">
+            <div class="painel-cabecalho">
+                <h2>Atividade recente</h2>
+            </div>
+
+            <div class="lista-atividade">
+
+                <div class="item-atividade">
+                    <div class="ponto-atividade"></div>
+                    <div>
+                        <p><strong>Maria Silva</strong> completou o cadastro</p>
+                        <time>há 12 minutos</time>
+                    </div>
+                </div>
+
+                <div class="item-atividade">
+                    <div class="ponto-atividade"></div>
+                    <div>
+                        <p><strong>João Pedro</strong> fez login no sistema</p>
+                        <time>há 40 minutos</time>
+                    </div>
+                </div>
+
+                <div class="item-atividade">
+                    <div class="ponto-atividade"></div>
+                    <div>
+                        <p><strong>Ana Costa</strong> atualizou a senha</p>
+                        <time>há 2 horas</time>
+                    </div>
+                </div>
+
+                <div class="item-atividade">
+                    <div class="ponto-atividade"></div>
+                    <div>
+                        <p><strong>Carlos Souza</strong> completou o cadastro</p>
+                        <time>ontem</time>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="painel">
+        <div class="painel-cabecalho">
+            <h2>Usuários cadastrados</h2>
+            <span class="periodo">128 no total</span>
+        </div>
+
+        <table class="tabela-usuarios">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="pessoa">
+                        <div class="avatar">MS</div>
+                        Maria Silva
+                    </div>
+                </td>
+                <td>maria.silva@email.com</td>
+                <td><span class="selo ativo">Ativo</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pessoa">
+                        <div class="avatar">JP</div>
+                        João Pedro
+                    </div>
+                </td>
+                <td>joao.pedro@email.com</td>
+                <td><span class="selo ativo">Ativo</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pessoa">
+                        <div class="avatar">AC</div>
+                        Ana Costa
+                    </div>
+                </td>
+                <td>ana.costa@email.com</td>
+                <td><span class="selo pendente">Pendente</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="pessoa">
+                        <div class="avatar">CS</div>
+                        Carlos Souza
+                    </div>
+                </td>
+                <td>carlos.souza@email.com</td>
+                <td><span class="selo ativo">Ativo</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+</body>
+</html>
